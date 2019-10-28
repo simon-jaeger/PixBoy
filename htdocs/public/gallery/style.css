@@ -1,0 +1,46 @@
+/* drawings */
+/******************************************************************************/
+.drawings {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+/* drawing */
+/******************************************************************************/
+.drawing {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 100%; /* force square aspect ratio */
+}
+
+.drawing_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 1rem solid var(--gb0);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+}
+
+.drawing_info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  transition: all 0.2s;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* truncate long titles */
+}
+@media (min-width: 992px) {
+  .drawing:hover > .drawing_info,
+  .drawing:focus > .drawing_info {
+    bottom: 0;
+  }
+}

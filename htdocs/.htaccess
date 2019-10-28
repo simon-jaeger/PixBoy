@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# rewrite all requests unless it's already a request to the public folder
+RewriteCond %{REQUEST_URI} !^/public/
+
+# forward all requests to the public folder,
+# making all other folders and files inaccessible from outside
+RewriteRule (.*) public/$1 [L]

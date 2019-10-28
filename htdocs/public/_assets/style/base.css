@@ -1,0 +1,209 @@
+/* fonts */
+/******************************************************************************/
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/_assets/fonts/source-code-pro-v11-latin-300.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/_assets/fonts/source-code-pro-v11-latin-regular.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/_assets/fonts/source-code-pro-v11-latin-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/_assets/fonts/source-code-pro-v11-latin-900.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Press Start 2P";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/_assets/fonts/press-start-2p-v8-latin-regular.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/_assets/fonts/fa-solid-900.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Font Awesome 5 Brands";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/_assets/fonts/fa-brands-400.woff2") format("woff2");
+}
+
+/* global */
+/******************************************************************************/
+:root {
+  --fontNormal: "Source Code Pro", monospace;
+  --fontSpecial: "Press Start 2P", monospace;
+
+  --black: #2c353d;
+  --blackLight: #373e47;
+  --blackAlpha: rgba(0, 0, 0, 0.5);
+
+  --white: #eeeeee;
+  --whiteLight: #ffffff;
+  --whiteDark: #cccccc;
+
+  --orange: #ffc573;
+  --orangeAlpha: rgba(251, 150, 0, 0.08);
+  --red: #db3939;
+  --redLight: #e64545;
+
+  /* game boy shades */
+  --gb0: #c4f0c2;
+  --gb1: #5ab9a8;
+  --gb2: #317c8c;
+  --gb3: #1f1f1f;
+
+  --gb2Dark: #2c6f7a;
+  --greenAlpha: rgba(49, 124, 140, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fontNormal);
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: var(--black);
+  color: var(--white);
+  overflow-y: scroll; /* always show scrollbar to avoid page jumping */
+}
+
+/* blocks */
+/******************************************************************************/
+:not([class]):last-child {
+  margin-bottom: 0;
+}
+
+h1:not([class]) {
+  margin-bottom: 2rem;
+  font-family: var(--fontSpecial);
+  font-size: 1.5rem;
+}
+h2:not([class]) {
+  margin-bottom: 1rem;
+  font-family: var(--fontSpecial);
+}
+h3:not([class]) {
+  font-weight: 700;
+}
+
+p:not([class]) {
+  margin-bottom: 1.5rem;
+}
+
+blockquote:not([class]) {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+pre:not([class]) {
+  font-family: monospace;
+  margin-bottom: 1.5rem;
+}
+
+ul:not([class]),
+ol:not([class]) {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+ul:not([class]) {
+  list-style: disc;
+}
+ol:not([class]) {
+  list-style: decimal;
+}
+
+table:not([class]) {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+th:not([class]),
+td:not([class]) {
+  border: 1px solid currentColor;
+  padding: 0.5rem;
+}
+th:not([class]) {
+  font-weight: 600;
+}
+
+img:not([class]) {
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+figure:not([class]) {
+  margin-bottom: 1.5rem;
+}
+
+hr:not([class]) {
+  margin-bottom: 23px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+/* inlines */
+/******************************************************************************/
+a:link:not([class]),
+a:visited:not([class]) {
+  text-decoration: underline;
+  color: var(--gb0);
+}
+a:hover:not([class]),
+a:focus:not([class]),
+a:active:not([class]) {
+  text-decoration: none;
+}
+
+strong:not([class]),
+b:not([class]) {
+  font-weight: 600;
+}
+em:not([class]),
+i:not([class]) {
+  font-style: italic;
+}
+del:not([class]) {
+  text-decoration: line-through;
+}
+
+/* ie10/11 notice */
+/******************************************************************************/
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  body {
+    overflow: hidden;
+  }
+  body::before {
+    content: "Sorry, your browser is not supported. Please revisit this site with a modern browser like Chrome or Firefox. Thank you very much and see you soon!";
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999999999999999999999999999999999999999999999999999999999999999999;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    padding: 25vh 25vw;
+    color: #eeeeee;
+    background-color: #2c353d;
+  }
+}

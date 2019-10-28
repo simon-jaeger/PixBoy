@@ -1,0 +1,615 @@
+/* shared */
+/******************************************************************************/
+:root {
+  --headerHeight: 4rem;
+}
+
+/* blockTransitions */
+/******************************************************************************/
+/* prevent transitions from playing on page load */
+.blockTransitions * {
+  transition: none !important;
+}
+
+/* site */
+/******************************************************************************/
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/* header */
+/******************************************************************************/
+.header {
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  height: var(--headerHeight);
+  padding: 0 1.5rem;
+  background-color: var(--black);
+}
+
+.header_inner {
+  display: flex;
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.header_logo {
+  height: 2rem;
+  margin-right: 2rem;
+}
+
+.header_burger {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .header_inner {
+    justify-content: space-between;
+  }
+  /* backdrop */
+  .header_inner::before {
+    content: "";
+    display: block;
+    position: fixed;
+    top: var(--headerHeight);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+  .header.is-navOpen > .header_inner::before {
+    visibility: visible;
+    background-color: var(--blackAlpha);
+  }
+
+  .header_burger {
+    display: flex;
+    margin-right: -1.5rem;
+    padding: 1rem 1.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .header_burger::before {
+    content: "\f0c9"; /* bars */
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-weight: 900;
+  }
+  .header.is-navOpen .header_burger::before {
+    content: "\f00d"; /* times */
+  }
+}
+
+/* nav */
+/******************************************************************************/
+.nav {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.nav_links {
+  display: flex;
+  margin-right: 2rem;
+  flex: 1 0 auto;
+}
+
+.nav_link {
+  padding: 0.5rem 1rem;
+  color: var(--whiteDark);
+}
+.nav_link:hover,
+.nav_link:focus {
+  color: var(--whiteLight);
+}
+.nav_link.is-current {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.nav_account {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+}
+
+.nav_accountDash {
+  padding: 0.5rem 0;
+  color: var(--whiteDark);
+}
+.nav_accountDash:hover,
+.nav_accountDash:focus {
+  color: var(--whiteLight);
+}
+.nav_accountDash.is-current {
+  color: var(--white);
+  font-weight: 600;
+}
+
+@media (max-width: 991px) {
+  .nav {
+    position: fixed;
+    top: var(--headerHeight);
+    right: -320px;
+    bottom: 0;
+    display: block;
+    width: 320px;
+    background-color: var(--black);
+    transition: all 0.3s;
+  }
+  .header.is-navOpen .nav {
+    right: 0;
+  }
+
+  .nav_links {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav_links::before,  /* line at top */
+  .nav_link {
+    display: flex;
+    padding: 1rem 1.5rem;
+    justify-content: flex-end;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 0 0 hsla(0, 0%, 100%, 0.2);
+    color: var(--white);
+    font-size: 1.5rem;
+    text-align: right;
+  }
+  .nav_link.is-current {
+    font-weight: 400;
+  }
+  .nav_links::before {
+    content: "";
+    display: block;
+    padding: 0;
+  }
+
+  .nav_account {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    grid-auto-flow: row;
+  }
+
+  .nav_accountDash {
+    border: 2px solid hsla(0, 0%, 100%, 0.5);
+    color: var(--white);
+    text-align: center;
+  }
+}
+
+/* main */
+/******************************************************************************/
+.main {
+  padding: 4rem 1.5rem;
+  flex: 1 0 auto;
+}
+
+.main_inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+@media (max-height: 720px) {
+  .main {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* footer */
+/******************************************************************************/
+.footer {
+  padding: 1.5rem;
+  border-top: 1px solid hsla(0, 0%, 100%, 0.2);
+  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--whiteDark);
+}
+
+.footer_inner {
+  display: flex;
+  max-width: 960px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.footer_link {
+  display: block;
+}
+.footer_link:hover,
+.footer_link:focus {
+  color: var(--whiteLight);
+}
+
+@media (max-width: 479px) {
+  .footer_inner {
+    display: block;
+    line-height: 2;
+  }
+}
+
+/* subline */
+/******************************************************************************/
+.subLine {
+  position: relative;
+  top: -1.5rem;
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+/* spacer utility class */
+/******************************************************************************/
+.spacer {
+  height: 4rem;
+}
+
+/* screen reader only utility class */
+/******************************************************************************/
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+/* form */
+/******************************************************************************/
+.form {
+  display: grid;
+  grid-gap: 1.5rem;
+}
+
+/* button */
+/******************************************************************************/
+.button {
+  display: flex;
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gb2Dark);
+  color: var(--white);
+  font-weight: 600;
+}
+.button:hover,
+.button:focus {
+  background-color: var(--gb2);
+}
+.button.is-ghost {
+  border: 2px solid var(--gb2Dark);
+  background-color: transparent;
+  font-weight: 400;
+}
+.button.is-ghost:hover,
+.button.is-ghost:focus {
+  border-color: var(--gb2);
+  background-color: rgba(49, 124, 140, 0.2);
+}
+.button.is-danger {
+  background-color: var(--red);
+}
+.button.is-danger:hover,
+.button.is-danger:focus {
+  background-color: var(--redLight);
+}
+.button.is-text {
+  background-color: transparent;
+  color: var(--whiteDark);
+  font-weight: 400;
+}
+.button.is-text:hover,
+.button.is-text:focus {
+  color: var(--whiteLight);
+}
+.button.is-big {
+  min-height: 5rem;
+  min-width: 5rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  font-size: 2rem;
+}
+.button.is-icon {
+  padding: 0;
+}
+
+/* input */
+/******************************************************************************/
+.input {
+  position: relative;
+}
+
+.input_field {
+  width: 100%;
+  height: 3.5rem;
+  padding: 1rem 1rem 0;
+  border-style: none none solid solid;
+  border-color: #000 #000 hsla(0, 0%, 100%, 0.5) hsla(0, 0%, 100%, 0.5);
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  background-color: var(--blackLight);
+  color: var(--white);
+}
+.input_field::placeholder {
+  color: transparent; /* hide placeholder, only necessary for floating label */
+}
+.input_field:focus {
+  border-bottom-color: var(--gb1);
+  border-left-color: var(--gb1);
+}
+.input_field.is-area {
+  min-height: 8rem;
+  padding-top: 1.5rem;
+}
+.input_field.is-areaBig {
+  min-height: 16rem;
+  padding-top: 1.5rem;
+}
+.input_field.is-labelHidden {
+  height: 2.5rem;
+  padding-top: 0;
+}
+.input_field.is-labelHidden::placeholder {
+  color: inherit;
+  font-weight: 300;
+}
+
+.input_label {
+  position: absolute;
+  top: 0.75rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  color: hsla(0, 0%, 100%, 0.5);
+  line-height: 1;
+  background-color: var(--blackLight);
+  transition: all 0.2s;
+  cursor: text;
+}
+.input_field:focus + .input_label,
+.input_field:not(:placeholder-shown) + .input_label {
+  top: 0;
+  left: 0;
+  margin-left: 0.625rem;
+  font-size: 0.75rem;
+}
+.input_field:focus + .input_label {
+  color: var(--gb1);
+}
+
+/* disable floating labels on edge */
+@supports (-ms-ime-align: auto) {
+  .input_label {
+    top: 0;
+    left: 0;
+    margin-left: 0.625rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* prevent wrong colors of autocompleted inputs on chrome */
+.input_field:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+@-webkit-keyframes autofill {
+  to {
+    background-color: var(--blackLight);
+    color: var(--white);
+  }
+}
+
+/* inputAndButton */
+/******************************************************************************/
+.inputAndButton {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+/* fileInput */
+/******************************************************************************/
+.fileInput {
+  position: relative;
+}
+
+.fileInput_preview {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.fileInput_label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+  background-color: var(--blackAlpha);
+}
+
+/* hack to force native file upload button to look like a custom button */
+/* only works on chrome, other browsers fall back to native styling */
+.fileInput_button::-webkit-file-upload-button {
+  border: none;
+  font-family: var(--fontNormal);
+  font-weight: 600;
+  background-color: var(--gb2Dark);
+  color: var(--white);
+  height: 2.5rem;
+  padding-right: 1.5rem;
+  padding-left: 2.5rem;
+  margin-left: -1rem;
+  cursor: pointer;
+}
+.fileInput_button::-webkit-file-upload-button:hover,
+.fileInput_button::-webkit-file-upload-button:focus {
+  outline: none;
+  background-color: var(--gb2);
+}
+
+/* check */
+/******************************************************************************/
+
+/* hide native checkbox visually but not for screen readers */
+.check > input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+.check_label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 2rem;
+}
+/* custom checkbox */
+.check_label::before {
+  content: "\f00c"; /* check */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  font-family: "Font Awesome 5 Free", sans-serif;
+  font-weight: 900;
+  font-size: 0.625rem;
+  color: transparent;
+}
+
+/* sync state of native checkbox with custom checkbox */
+input[type="checkbox"]:checked + .check_label::before {
+  border: none;
+  background-color: var(--gb2);
+  color: var(--white);
+}
+
+/* alert */
+/******************************************************************************/
+.alert {
+  position: relative;
+  padding: 1rem 4rem 1rem 1rem;
+  border: 1px solid transparent;
+}
+/* icon */
+.alert::before {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  font-family: "Font Awesome 5 Free", sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+.alert.is-error {
+  border-color: var(--orange);
+  background-color: var(--orangeAlpha);
+  color: var(--orange);
+}
+.alert.is-error::before {
+  content: "\f071"; /* exclamation-triangle */
+}
+.alert.is-success {
+  border-color: var(--gb2);
+  background-color: var(--greenAlpha);
+  color: var(--gb0);
+}
+.alert.is-success::before {
+  content: "\f058"; /* check-circle */
+}
+.alert.is-success.is-fadesOut {
+  animation: successFadesOut 4s forwards;
+}
+@keyframes successFadesOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .alert {
+    padding-right: 1rem;
+  }
+  .alert.is-success {
+    text-align: center;
+  }
+  .alert::before {
+    position: static;
+    transform: translateY(0);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+/* actionsBar */
+/******************************************************************************/
+.actionsBar {
+  display: grid;
+  margin-bottom: 1.5rem;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 479px) {
+  .actionsBar {
+    grid-auto-flow: row;
+    grid-template-columns: auto;
+  }
+  /* push main element to last position */
+  .actionsBar > :first-child {
+    order: 9999;
+  }
+}
+
+/* notice */
+/******************************************************************************/
+.notice {
+  display: grid;
+  padding: 4rem;
+  justify-items: center;
+  grid-gap: 1.5rem;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.notice_text {
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+@media (max-width: 479px) {
+  .notice {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}

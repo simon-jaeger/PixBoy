@@ -1,0 +1,47 @@
+/* drawingSingle */
+/******************************************************************************/
+.drawingSingle {
+  position: relative;
+  display: flex;
+  height: 24rem;
+  min-height: 24rem; /* fix for safari mobile */
+  margin-bottom: 2rem;
+  justify-content: center;
+  background-color: #000;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+}
+
+.drawingSingle_img {
+  height: 100%;
+  border: 2rem solid var(--gb0);
+}
+
+.drawingSingle_edit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  color: var(--whiteDark);
+}
+.drawingSingle_edit:hover,
+.drawingSingle_edit:focus {
+  color: var(--whiteLight);
+}
+
+@media (max-width: 600px) {
+  .drawingSingle {
+    height: auto;
+    min-height: auto;
+  }
+  .drawingSingle_img {
+    width: 100%;
+    height: auto;
+  }
+  .drawingSingle_edit {
+    left: 0;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+}
